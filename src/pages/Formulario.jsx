@@ -1,24 +1,67 @@
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import TableContainer from "@mui/material/TableContainer";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import {
-  Button,
-  Checkbox,
-  Input,
-  Paper,
-  TableHead,
-  TextField,
-} from "@mui/material";
 import { useState } from "react";
+import {
+  entrada,
+  checkOut,
+  exhibiciones,
+  nutricion,
+  alimentoNatural,
+  alimentoAvanzado,
+  alimentoPrescripcion,
+  premiosCarMas,
+  nutriCSN,
+  saludBienestar,
+  POGSbelleza,
+  POGSsalud,
+  POGSlimpieza,
+  POGSCSN,
+  ModaDiversion,
+  planomdperro,
+  planohogarperro,
+  planomdgato,
+  planohogargato,
+  modaCSN,
+  petcoZoo,
+  planoacuario,
+  planoreptil,
+  planoave,
+  planoroedor,
+  ZOOCSN,
+} from "../helpers/preguntas";
+import Acordeon from "../components/Acordeon";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 const Formulario = () => {
-  const [selectedImages, setSelectedImages] = useState(Array(5).fill(null));
+  const categorias = [
+    { titulo: "Entrada", array: entrada },
+    { titulo: "CheckOut", array: checkOut },
+    { titulo: "Exhibiciones", array: exhibiciones },
+    { titulo: "Nutricion", array: nutricion },
+    { titulo: "Alimento Natural", array: alimentoNatural },
+    { titulo: "Alimento Avanzado", array: alimentoAvanzado },
+    { titulo: "Alimento Prescripción", array: alimentoPrescripcion },
+    { titulo: "Premios Carnazas y Más", array: premiosCarMas },
+    { titulo: "Nutricion Pendientes Areas Ejecutivas", array: nutriCSN },
+    { titulo: "Salud y Bienestar", array: saludBienestar },
+    { titulo: "Sección Belleza", array: POGSbelleza },
+    { titulo: "Sección Salud", array: POGSsalud },
+    { titulo: "Sección Limpieza", array: POGSlimpieza },
+    { titulo: "Salud y Bienestar Pendientes Areas Ejecutivas", array: POGSCSN },
+    { titulo: "Moda Y Diversion", array: ModaDiversion },
+    { titulo: "Planograma Perro", array: planomdperro },
+    { titulo: "Hogar Prescripción", array: planohogarperro },
+    { titulo: "Planograma Gato", array: planomdgato },
+    { titulo: "Hogar Gato", array: planohogargato },
+    { titulo: "Moda y Diversión Pendientes Areas Ejecutivas", array: modaCSN },
+    { titulo: "Petco Zoo", array: petcoZoo },
+    { titulo: "Acuario", array: planoacuario },
+    { titulo: "Reptiles", array: planoreptil },
+    { titulo: "Aves", array: planoave },
+    { titulo: "Roedores", array: planoroedor },
+    { titulo: "Petco Zoo Pendientes Areas Ejecutivas", array: ZOOCSN },
+  ];
+
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const handleImageChange = (event, index) => {
     const file = event.target.files[0];
@@ -34,81 +77,35 @@ const Formulario = () => {
   };
 
   return (
-    <Accordion>
-      <AccordionSummary>
-        <Typography variant="h6">Entrada</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <TableContainer component={Paper} sx={{ backgroundColor: "white" }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell colSpan={2}>Rubros</TableCell>
-                <TableCell>Checkbox</TableCell>
-                <TableCell colSpan={2}>Comentario</TableCell>
-                <TableCell>Evidencia</TableCell>
-                <TableCell>Fecha</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {Array.from({ length: 5 }, (_, index) => (
-                <TableRow key={index}>
-                  <TableCell colSpan={2}>
-                    <Typography>1.-No se Encuentra Cartel del Mes</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Checkbox
-                      sx={{
-                        "& .MuiSvgIcon-root": {
-                          fontSize: 40,
-                          color: "#001952",
-                        },
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell colSpan={2}>
-                    <TextField label="Comentario" fullWidth />
-                  </TableCell>
-                  <TableCell>
-                    {selectedImages[index] ? (
-                      <img
-                        src={selectedImages[index]}
-                        alt="Selected"
-                        style={{
-                          width: "250px",
-                          height: "250px",
-                        }}
-                      />
-                    ) : (
-                      <label>
-                        <Input
-                          type="file"
-                          accept="image/*"
-                          style={{ display: "none" }}
-                          onChange={(event) => handleImageChange(event, index)}
-                        />
-                        <Button
-                          variant="contained"
-                          component="span"
-                          style={{ cursor: "pointer" }}
-                        >
-                          {selectedImages[index]
-                            ? "Cambiar Imagen"
-                            : "Seleccionar Imagen"}
-                        </Button>
-                      </label>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <TextField type="date" InputLabelProps={{ shrink: true }} />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </AccordionDetails>
-    </Accordion>
+    <>
+      <form>
+        {categorias.map((categoria, index) => (
+          <Acordeon
+            key={index}
+            titulo={categoria.titulo}
+            array={categoria.array}
+            selectedImages={selectedImages}
+            handleImageChange={(event) => handleImageChange(event, index)}
+          />
+        ))}
+
+        <Box
+          sx={{ marginTop: "20px", display: "flex", justifyContent: "center" }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            sx={{
+              backgroundColor: "#001952",
+              "&:hover": { backgroundColor: "#001952" },
+            }}
+          >
+            Guardar
+          </Button>
+        </Box>
+      </form>
+    </>
   );
 };
 

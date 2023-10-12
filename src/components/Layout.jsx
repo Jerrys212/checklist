@@ -7,7 +7,10 @@ const Layout = () => {
     <>
       {/* <Header /> */}
 
-      <Container maxWidth="xl" sx={{ marginTop: "30px" }}>
+      <Container
+        maxWidth="xl"
+        sx={{ marginTop: "30px", paddingBottom: "30px" }}
+      >
         <Outlet />
       </Container>
     </>
