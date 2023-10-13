@@ -3,9 +3,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import ModalCodigo from "../components/ModalCodigo";
+import { useState } from "react";
+import Spinner from "../components/Spinner";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [open, setOpen] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+  const handleOpen = () => setOpen(true);
+
   const navigate = useNavigate();
 
   return (
@@ -29,7 +36,8 @@ const Login = () => {
             fontWeight: "700",
           }}
         >
-          Inicia Sesión
+          {" "}
+          Inicia Sesión{" "}
         </Typography>
         <TextField
           id="outlined-basic-1"
@@ -40,16 +48,7 @@ const Login = () => {
             marginBottom: "12px",
           }}
         />
-        <TextField
-          id="filled-password-input"
-          label="Password"
-          type="password"
-          fullWidth
-          variant="outlined"
-          sx={{
-            marginBottom: "12px",
-          }}
-        />
+
         <div
           style={{
             display: "flex",
@@ -57,7 +56,7 @@ const Login = () => {
           }}
         >
           <Button
-            onClick={() => navigate("/admin")}
+            onClick={handleOpen}
             variant="contained"
             sx={{
               backgroundColor: "#001952",
@@ -68,6 +67,20 @@ const Login = () => {
           </Button>
         </div>
       </Box>
+
+      <ModalCodigo
+        open={open}
+        cerrar={() => setOpen(false)}
+        handleClose={() => {
+          setOpen(false);
+          setSpinner(true);
+          setTimeout(() => {
+            setSpinner(false);
+            navigate("/admin");
+          }, 2000);
+        }}
+      />
+      <Spinner spinnerToggle={spinner} />
     </Container>
   );
 };

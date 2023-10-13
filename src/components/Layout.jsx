@@ -9,7 +9,7 @@ const Layout = () => {
 
       <Container
         maxWidth="lg"
-        sx={{ marginTop: "30px", paddingBottom: "30px" }}
+        sx={{ marginTop: "30px", paddingBottom: "30px", marginX: "auto" }}
       >
         <Outlet />
       </Container>

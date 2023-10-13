@@ -1,14 +1,15 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
 import Formulario from "./pages/Formulario";
 import Menu from "./pages/Menu";
 import Planes from "./pages/Planes";
 import Plan from "./pages/Plan";
+import Resumen from "./pages/Resumen";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Login />} />
@@ -18,9 +19,10 @@ const App = () => {
           <Route path="formulario" element={<Formulario />} />
           <Route path="planes" element={<Planes />} />
           <Route path="plan/:plan" element={<Plan />} />
+          <Route path="resumen" element={<Resumen />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

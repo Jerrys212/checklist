@@ -26,15 +26,15 @@ const Menu = () => {
         </Typography>
         <form>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <InputLabel id="demo-simple-select-label">Tienda</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              label="Age"
+              label="Tienda"
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={10}>7101</MenuItem>
+              <MenuItem value={20}>7120</MenuItem>
+              <MenuItem value={30}>7179</MenuItem>
             </Select>
           </FormControl>
           <Button
@@ -86,7 +86,7 @@ const Menu = () => {
           fullWidth
           size="large"
           sx={{ marginTop: "10px" }}
-          onClick={() => navigate("/resumen")}
+          onClick={() => navigate("resumen")}
         >
           Ver Resumen
         </Button>
