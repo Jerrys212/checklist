@@ -1,14 +1,13 @@
-import {
-  TableContainer,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TablePagination,
-  TextField,
-  Button,
-} from "@mui/material";
+import TableContainer from "@mui/material/TableContainer";
+import Table from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
+import TableBody from "@mui/material/TableBody";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
+import TablePagination from "@mui/material/TablePagination";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 const Planes = () => {
